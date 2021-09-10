@@ -1,0 +1,42 @@
+.inputWrap {
+  margin-bottom: 8px;
+}
+.inputWrap label {
+  display: block;
+  color: #fff;
+  letter-spacing: 1.2px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.inputWrap input:not([type='checkbox']) {
+  margin-top: 2px;
+  display: block;
+  border: 0px;
+  background: #333;
+  background: rgba(33, 33, 33, 0.66);
+  color: #fff;
+  padding: 12px 12px;
+  border-radius: 4px;
+  width: 100%;
+  box-shadow: 0px 0px 4px 0 rgba(0, 0, 0, 0.32) inset,
+    0px 0px 10px 0 rgba(0, 0, 0, 0.18) inset !important;
+  outline: 0;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  letter-spacing: 0.6px;
+  font-weight: 600;
+}
+.inputWrap input[type='checkbox'] {
+  display: none;
+}
+
+.inputWrap input:focus {
+  background: rgba(175, 200, 255, 0.66);
+  color: #000;
+}
+
+.inputWrap .checkIconWrap {
+  color: #fff;
+  background: transparent;
+}

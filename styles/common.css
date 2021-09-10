@@ -1,0 +1,138 @@
+.iBtnPrimary,
+.iBtnSecondary {
+  outline: 0;
+  border: 0;
+  font-weight: 600;
+  font-size: 18px;
+  margin: 12px 0px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.iBtnPrimary {
+  background: #26c6da;
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
+    0 7px 10px -5px rgba(0, 0, 0, 0.4) !important;
+  color: #212121;
+}
+
+.iBtnPrimary:hover,
+.iBtnPrimary.active {
+  background: #2bd4eb;
+  box-shadow: 0 4px 20px 0 rgba(255, 255, 255, 0.14),
+    0 7px 10px -5px rgba(0, 172, 193, 1) !important;
+  color: #212121;
+}
+
+.iBtnSecondary {
+  background: #212121;
+  background: rgba(21, 21, 21, 0.66);
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
+    0 7px 10px -5px rgba(0, 0, 0, 0.4) !important;
+  color: #2bd4eb;
+}
+
+.iBtnSecondary:hover {
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
+    0 7px 10px -5px rgba(21, 21, 21, 1) !important;
+}
+
+/* util classes */
+
+.fR {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  flex-direction: row;
+}
+
+.fC {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  flex-direction: column;
+}
+
+.fAiC {
+  align-items: center;
+}
+
+.fJcSb {
+  justify-content: space-between;
+}
+
+.fAiSb {
+  align-items: space-between;
+}
+
+.fJcC {
+  justify-content: center;
+}
+
+.w100 {
+  width: 100%;
+}
+
+.alignL {
+  text-align: left !important;
+}
+
+.alignC {
+  text-align: center !important;
+}
+
+.alignR {
+  text-align: right !important;
+}
+
+.fontL {
+  font-size: 22px;
+}
+
+.fontM {
+  font-size: 16px;
+}
+
+.fontS {
+  font-size: 12px;
+}
+
+.bold {
+  font-weight: bold !important;
+}
+
+.wsN {
+  white-space: nowrap !important;
+}
+
+.mt6 {
+  margin-top: 6px !important;
+}
+
+.mt12 {
+  margin-top: 12px !important;
+}
+
+.mr12 {
+  margin-right: 12px !important;
+}
+
+.mb12 {
+  margin-bottom: 12px !important;
+}
+
+.ml12 {
+  margin-left: 12px !important;
+}
+
+.mt18 {
+  margin-top: 18px !important;
+}

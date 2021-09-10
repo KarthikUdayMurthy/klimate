@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+
+* {
+  font-family: 'Raleway', 'Verdana' !important;
+  letter-spacing: 0.6px;
+}
+
+input,
+button {
+  font-family: 'Open Sans', 'Verdana' !important;
+}
+
+.font1 {
+  font-family: 'Raleway', 'Verdana' !important;
+}
+
+.font2 {
+  font-family: 'Open Sans', 'Verdana' !important;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background: #333;
+}
+
+#root {
+  background: url('https://i.imgur.com/kLa5a34.jpeg') !important;
+  /* background: url('https://i.imgur.com/5bYq6xm.jpeg') !important; */
+  width: 100%;
+  height: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-position: center center !important;
+}
+
+.appWrap {
+  margin: 0px;
+  padding: 0px;
+  background: #333;
+  background: linear-gradient(
+    45deg,
+    rgba(42, 27, 161, 0.7),
+    rgba(29, 210, 177, 0.7) 100%
+  ) !important;
+  box-sizing: border-box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  flex-direction: column;
+  width: 100% !important;
+  height: 100vh !important;
+  overflow: hidden;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+.appWrap .view {
+  margin: 12px 12px;
+  border-radius: 4px;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  background: transparent;
+  flex: 15 15 auto;
+  -webkit-flex: 15 15 auto;
+  -moz-flex: 15 15 auto;
+  overflow-y: auto;
+  position: relative;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+*::-webkit-scrollbar {
+  display: block !important;
+  width: 4px;
+  height: 4px;
+  /* background-color: #eeeeee; */
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #2bd4eb;
+  border-radius: 20px;
+  border: 0px;
+}

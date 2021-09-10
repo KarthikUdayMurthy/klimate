@@ -1,0 +1,24 @@
+.tabMenuWrap {
+  background: #212121;
+  background: rgba(21, 21, 21, 0.66);
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
+    0 7px 10px -5px rgba(0, 0, 0, 0.4) !important;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 12px;
+  border-radius: 4px;
+  margin: 12px 0px;
+}
+
+.tabMenuWrap button {
+  flex: 0 1 auto;
+  margin-left: 4px;
+  margin-right: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 6px 8px;
+}
