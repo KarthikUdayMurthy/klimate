@@ -1,3 +1,3 @@
-# klimate
+# Klimate
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/klimate)
+[View on StackBlitz ⚡️](https://klimate.stackblitz.io/home)
