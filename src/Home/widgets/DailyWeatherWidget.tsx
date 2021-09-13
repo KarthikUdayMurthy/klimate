@@ -34,7 +34,7 @@ const DailyWeatherWidget: React.FC<DailyWeatherWidgetProps> = ({
   const [showDetail, setShowDetail] = React.useState<number>(-1);
 
   const toggleDetail = (ind: number) => {
-    setShowDetail(showDetail === -1 ? ind : -1);
+    setShowDetail(showDetail === ind ? -1 : ind);
   };
 
   return (
@@ -113,7 +113,7 @@ const DailyWeatherWidget: React.FC<DailyWeatherWidgetProps> = ({
                   'fas fa-angle-double-down'
                 )}
                 {getDataPoint('UV Index', data.uvi, 'fas fa-fire')}
-                {getDataPoint('pop', data.pop * 100 + '%', 'fas fa-cloud-rain')}
+                {getDataPoint('pop', data.pop + '%', 'fas fa-cloud-rain')}
               </div>
             </div>
           )}

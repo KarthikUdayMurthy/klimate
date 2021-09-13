@@ -100,7 +100,7 @@ const TomorrowWeatherWidget: React.FC<TomorrowWeatherWidgetProps> = ({
               'fas fa-angle-double-down'
             )}
             {getDataPoint('UV Index', data.uvi, 'fas fa-fire')}
-            {getDataPoint('pop', data.pop * 100 + '%', 'fas fa-cloud-rain')}
+            {getDataPoint('pop', data.pop + '%', 'fas fa-cloud-rain')}
           </div>
         </div>
         <div className="fR w100 fAiC fJcSb mt18">

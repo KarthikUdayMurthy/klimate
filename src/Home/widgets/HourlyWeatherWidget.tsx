@@ -62,7 +62,7 @@ const HourlyWeatherWidget: React.FC<HourlyWeatherWidgetProps> = ({
               )}
             </div>
             <div className="alignR wsN ml12">
-              {getDataPoint(data.pop * 100 + '%', 'fas fa-cloud-rain')}
+              {getDataPoint(data.pop + '%', 'fas fa-cloud-rain')}
             </div>
           </div>
         </div>

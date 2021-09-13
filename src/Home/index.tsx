@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Loading, TabMenu, ITabMenuItem } from '../Util/Components';
 import apiHelper, { FetchDataParams } from '../Util/apiHelper';
+import { addSwipeListeners, removeSwipeListeners } from '../Util/swipeDetect';
 import dataModifier from '../Util/dataModifier';
 import {
   DataHistoryWidget,
@@ -41,6 +42,15 @@ export default class Home extends React.Component<HomeProps, HomeState> {
   }
 
   componentDidMount() {
+    addSwipeListeners(
+      () => {
+        this.menuItemChange(this.state.selectedMenuIndex - 1);
+      },
+      () => {
+        this.menuItemChange(this.state.selectedMenuIndex + 1);
+      },
+      '.HourlyWeatherWidget'
+    );
     this.fetchOneCallData();
     this.setState({
       menuItems: [
@@ -64,6 +74,10 @@ export default class Home extends React.Component<HomeProps, HomeState> {
         }
       ]
     });
+  }
+
+  componentWillUnmount() {
+    removeSwipeListeners();
   }
 
   fetchOneCallData() {
@@ -113,6 +127,11 @@ export default class Home extends React.Component<HomeProps, HomeState> {
   }
 
   menuItemChange(menuItemIndex: number) {
+    if (menuItemIndex > 2) {
+      menuItemIndex = 2;
+    } else if (menuItemIndex < 0) {
+      menuItemIndex = 0;
+    }
     this.setState({
       menuItems: this.state.menuItems.map((menuItem, ind) => {
         menuItem.isSelected = menuItemIndex === ind;

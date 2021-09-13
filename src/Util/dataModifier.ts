@@ -37,6 +37,7 @@ const modifyHourly = (
     wind_speed: Math.round((c.wind_speed * 3600) / 1000),
     visibility: Math.round(c.visibility / 1000),
     dew_point: Math.round(c.dew_point),
+    pop: Math.round(c.pop * 10000) / 100,
     _dayLight: getDayLight(
       Math.round(getHoursFromTimestamp(c.dt) * 100) / 100,
       _sunrise_hrs,
@@ -64,6 +65,7 @@ const modifyDaily = (c: IDailyWeather): IDailyWeather => {
     },
     wind_speed: Math.round((c.wind_speed * 3600) / 1000),
     dew_point: Math.round(c.dew_point),
+    pop: Math.round(c.pop * 10000) / 100,
     _wind_deg: degToCard(c.wind_deg),
     _sunrise_hrs: Math.round(getHoursFromTimestamp(c.sunrise) * 100) / 100,
     _sunset_hrs: Math.round(getHoursFromTimestamp(c.sunset) * 100) / 100
