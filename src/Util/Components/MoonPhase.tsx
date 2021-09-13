@@ -7,7 +7,6 @@ interface MoonPhaseProps {
 const MoonPhase: React.FC<MoonPhaseProps> = ({ value }) => {
   const size = 25;
   const fctr = size * 0.75 * value;
-  console.log(value, fctr);
   const moonStyle = {
     boxShadow: `${fctr}px ${fctr * -1}px 0 0 white inset`
   };
