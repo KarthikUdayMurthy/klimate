@@ -12,3 +12,4 @@ import './modules/widgets.css';
 import './Components/input.css';
 import './Components/loading.css';
 import './Components/tabMenu.css';
+import './Components/moonPhase.css';

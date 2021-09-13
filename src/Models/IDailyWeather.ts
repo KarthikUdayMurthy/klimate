@@ -37,4 +37,6 @@ export interface IDailyWeather {
   _wind_deg?: string;
   _sunrise_hrs?: number;
   _sunset_hrs?: number;
+  _moonrise_hrs?: number;
+  _moonset_hrs?: number;
 }

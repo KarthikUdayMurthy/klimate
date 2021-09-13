@@ -1,0 +1,13 @@
+.moonPhase {
+  width: 25px !important;
+  height: 25px !important;
+  border-radius: 50% !important;
+  background: transparent !important;
+  position: relative !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  box-shadow: 0px 0px 0 0 white inset;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}

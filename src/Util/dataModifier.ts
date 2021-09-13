@@ -68,7 +68,9 @@ const modifyDaily = (c: IDailyWeather): IDailyWeather => {
     pop: Math.round(c.pop * 10000) / 100,
     _wind_deg: degToCard(c.wind_deg),
     _sunrise_hrs: Math.round(getHoursFromTimestamp(c.sunrise) * 100) / 100,
-    _sunset_hrs: Math.round(getHoursFromTimestamp(c.sunset) * 100) / 100
+    _sunset_hrs: Math.round(getHoursFromTimestamp(c.sunset) * 100) / 100,
+    _moonrise_hrs: Math.round(getHoursFromTimestamp(c.moonrise) * 100) / 100,
+    _moonset_hrs: Math.round(getHoursFromTimestamp(c.moonset) * 100) / 100
   };
 };
 

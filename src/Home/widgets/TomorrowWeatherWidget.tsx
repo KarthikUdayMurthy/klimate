@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IDailyWeather } from '../../Models';
 import { getDateFromTimestamp } from '../../Util/util';
-import { DayNightMeter } from './DayNightMeter';
+import { MoonPhase } from '../../Util/Components';
 
 export interface TomorrowWeatherWidgetProps {
   data: IDailyWeather;
@@ -110,14 +110,28 @@ const TomorrowWeatherWidget: React.FC<TomorrowWeatherWidgetProps> = ({
               getDateFromTimestamp(data.sunrise, false, 'hh:mm'),
               'fas fa-sun'
             )}
+            {getDataPoint(
+              'Moonrise',
+              getDateFromTimestamp(data.moonrise, false, 'hh:mm'),
+              'fas fa-moon'
+            )}
           </div>
           <div className="alignR wsN">
             {getDataPoint(
               'Sunset',
               getDateFromTimestamp(data.sunset, false, 'hh:mm'),
-              'fas fa-moon'
+              'far fa-sun'
+            )}
+            {getDataPoint(
+              'Moonset',
+              getDateFromTimestamp(data.moonset, false, 'hh:mm'),
+              'far fa-moon'
             )}
           </div>
+        </div>
+        <div className="fR w100 fAiC fJcC mt18">
+          <div className="fontS font1 alignC wsN mr12">Moon Phase</div>
+          <MoonPhase value={data.moon_phase} />
         </div>
       </div>
     </div>

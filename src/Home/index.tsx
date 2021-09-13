@@ -34,7 +34,7 @@ export default class Home extends React.Component<HomeProps, HomeState> {
       apiError: '',
       OneCallEndPoint: 'OneCall',
       menuItems: [],
-      selectedMenuIndex: 0
+      selectedMenuIndex: 1
     };
     this.fetchOneCallData = this.fetchOneCallData.bind(this);
     this.refreshData = this.refreshData.bind(this);

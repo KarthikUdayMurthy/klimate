@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { IDailyWeather } from '../../Models';
 import { getDateFromTimestamp } from '../../Util/util';
+import { MoonPhase } from '../../Util/Components';
 
 export interface DailyWeatherWidgetProps {
   data: IDailyWeather[];
@@ -114,6 +115,10 @@ const DailyWeatherWidget: React.FC<DailyWeatherWidgetProps> = ({
                 )}
                 {getDataPoint('UV Index', data.uvi, 'fas fa-fire')}
                 {getDataPoint('pop', data.pop + '%', 'fas fa-cloud-rain')}
+                <div className="fR w100 fAiC fJcSb mt18">
+                  <div className="fontS font1 alignC wsN mr12">Moon Phase</div>
+                  <MoonPhase value={data.moon_phase} />
+                </div>
               </div>
             </div>
           )}
