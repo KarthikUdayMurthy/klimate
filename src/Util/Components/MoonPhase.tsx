@@ -5,8 +5,10 @@ interface MoonPhaseProps {
 }
 
 const MoonPhase: React.FC<MoonPhaseProps> = ({ value }) => {
+  let phaseVal: number = value * 2;
+  phaseVal = phaseVal > 1 ? phaseVal - 1 : phaseVal;
   const size = 25;
-  const fctr = size * 0.75 * value;
+  const fctr = size * 0.75 * phaseVal;
   const moonStyle = {
     boxShadow: `${fctr}px ${fctr * -1}px 0 0 white inset`
   };
@@ -14,7 +16,7 @@ const MoonPhase: React.FC<MoonPhaseProps> = ({ value }) => {
     <div className="moonPhaseWrap fC fAiC fJcSb">
       <div className="moonPhase" style={moonStyle} />
       <div className="moonPhaseText fontS font2 mt6 wsN bold">
-        {Math.round(value * 10000) / 100}%
+        {Math.round(phaseVal * 10000) / 100}%
       </div>
     </div>
   );
