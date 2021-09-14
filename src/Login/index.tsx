@@ -18,6 +18,8 @@ interface LoginState {
 }
 
 export default class Login extends React.Component<LoginProps, LoginState> {
+  private _isMounted: boolean = false;
+
   constructor(props) {
     super(props);
     let userData = this.props.userData;
@@ -27,16 +29,24 @@ export default class Login extends React.Component<LoginProps, LoginState> {
       long: userData?.long || 0,
       rememberMe: !!userData,
       error: "",
-      loading: false
+      loading: false      
     };
+
+    this._isMounted = false;
+
     this.onSubmit = this.onSubmit.bind(this);
     this.fetchAndSetLocation = this.fetchAndSetLocation.bind(this);
   }
 
   componentDidMount() {
+    this._isMounted = true;
       if(!this.props.userData) {
         this.fetchAndSetLocation();
       }
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   async fetchAndSetLocation() {
@@ -48,7 +58,7 @@ export default class Login extends React.Component<LoginProps, LoginState> {
     try {
       let locCoords = await getLocation();
         setTimeout(()=>{
-          this.setState({
+          this._isMounted && this.setState({
             lat: locCoords.lat,
             long: locCoords.long,
             loading: false
@@ -92,17 +102,17 @@ export default class Login extends React.Component<LoginProps, LoginState> {
         {this.state.loading && <Loading />}
         <h1><i className="fas fa-bolt"></i> <br/> Klimate</h1>
         <form onSubmit={this.onSubmit}>
-          <Input label="API Key" type="password"  value={this.state.apiKey} onChangeHandler={(e) => {this.setState({apiKey: e.target.value})}} />
+          <Input label="API Key" type="password"  value={this.state.apiKey} onChangeHandler={(e) => {this.setState({apiKey: e.target.value})}} required={true} />
           <div className="locWrap">
             <div className="fieldPart">              
-              <Input label="Latitude" type="number"  value={this.state.lat} onChangeHandler={(e) => {this.setState({lat: e.target.value})}} />
-              <Input label="Longitude" type="number"  value={this.state.long} onChangeHandler={(e) => {this.setState({long: e.target.value})}} />
+              <Input label="Latitude" type="number"  value={this.state.lat} onChangeHandler={(e) => {this.setState({lat: e.target.value})}} required={true} />
+              <Input label="Longitude" type="number"  value={this.state.long} onChangeHandler={(e) => {this.setState({long: e.target.value})}} required={true} />
             </div>
             <div className="iconPart">              
                 <button type="button" onClick={this.fetchAndSetLocation} className="iBtnSecondary" title="Get Current Location" ><i className="fas fa-map-marker-alt"></i> <br/> <span className="w3-small">Get<br/>Location</span></button>
             </div>
           </div>
-          <Input label="Remember Me" type="checkbox"  value={this.state.rememberMe} onChangeHandler={(e) => {this.setState({rememberMe: e.target.checked})}} />
+          <Input label="Remember Me" type="checkbox"  value={this.state.rememberMe} onChangeHandler={(e) => {this.setState({rememberMe: e.target.checked})}} required={true} />
           <input type="submit" value="Show Weather" className="iBtnPrimary w3-block" />
           {this.state.error && <div className="errDiv w3-pale-red w3-text-red w3-animate-opacity"><i className="fas fa-exclamation-circle"></i> {this.state.error}</div>}
         </form>
