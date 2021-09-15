@@ -39,11 +39,11 @@ const DailyWeatherWidget: React.FC<DailyWeatherWidgetProps> = ({
   };
 
   return (
-    <div className="DailyWeatherWidget card">
+    <div className="DailyWeatherWidget card w3-animate-right">
       {dailyData.map((data, ind) => (
         <div
           key={data.dt}
-          className="DailyWeatherWidgetItem w3-animate-top"
+          className="DailyWeatherWidgetItem"
           onClick={() => toggleDetail(ind)}
         >
           <div className="fR w100 fAiC fJcSb">

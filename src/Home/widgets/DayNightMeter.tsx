@@ -45,7 +45,7 @@ const DayNightMeter: React.FC<DayNightMeterProps> = ({
   }
 
   return (
-    <div className="fR w100 fAiC fJcSb DayNightMeter w3-animate-opacity">
+    <div className="fR w100 fAiC fJcSb DayNightMeter">
       {meterDivs.map((m, i) => (
         <div
           key={i}

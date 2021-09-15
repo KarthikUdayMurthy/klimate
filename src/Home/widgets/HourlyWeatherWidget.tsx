@@ -31,9 +31,7 @@ const HourlyWeatherWidget: React.FC<HourlyWeatherWidgetProps> = ({
       {hourlyData.map(data => (
         <div
           key={data.dt}
-          className={
-            'HourlyWeatherWidgetItem w3-animate-left ' + data._dayLight
-          }
+          className={'HourlyWeatherWidgetItem ' + data._dayLight}
         >
           <div className="fR w100 fAiC fJcSb">
             <div className="fontS font1 mr12">

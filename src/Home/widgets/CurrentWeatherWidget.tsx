@@ -36,7 +36,7 @@ const CurrentWeatherWidget: React.FC<CurrentWeatherWidgetProps> = ({
   hourlyWeatherdata
 }) => {
   return (
-    <div className="CurrentWeatherWidget card">
+    <div className="CurrentWeatherWidget card w3-animate-left">
       <div className="fC w100 fAiSb fJcC">
         <div className="fR w100 fAiC fJcC mb12 wsN fontM">
           <i className="fas fa-calendar" />

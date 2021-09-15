@@ -23,6 +23,7 @@ interface HomeState {
   OneCallEndPoint: string;
   menuItems: ITabMenuItem[];
   selectedMenuIndex: number;
+  previousMenuIndex: number;
 }
 
 export default class Home extends React.Component<HomeProps, HomeState> {
@@ -34,7 +35,8 @@ export default class Home extends React.Component<HomeProps, HomeState> {
       apiError: '',
       OneCallEndPoint: 'OneCall',
       menuItems: [],
-      selectedMenuIndex: 0
+      selectedMenuIndex: 0,
+      previousMenuIndex: 0
     };
     this.fetchOneCallData = this.fetchOneCallData.bind(this);
     this.refreshData = this.refreshData.bind(this);
@@ -137,6 +139,7 @@ export default class Home extends React.Component<HomeProps, HomeState> {
         menuItem.isSelected = menuItemIndex === ind;
         return menuItem;
       }),
+      previousMenuIndex: this.state.selectedMenuIndex,
       selectedMenuIndex: menuItemIndex
     });
   }
@@ -175,7 +178,10 @@ export default class Home extends React.Component<HomeProps, HomeState> {
             />
           )}
           {this.state.selectedMenuIndex === 1 && (
-            <TomorrowWeatherWidget data={apiData.daily[1]} />
+            <TomorrowWeatherWidget
+              data={apiData.daily[1]}
+              previousMenuIndex={this.state.previousMenuIndex}
+            />
           )}
           {this.state.selectedMenuIndex === 2 && (
             <DailyWeatherWidget data={apiData.daily} />

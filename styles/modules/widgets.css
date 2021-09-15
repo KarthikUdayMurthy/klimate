@@ -111,7 +111,7 @@
   flex-direction: column;
   align-items: stretch;
   justify-content: space-between;
-  max-height: 50vh;
+  max-height: 60vh;
 }
 
 .DailyWeatherWidgetItem {

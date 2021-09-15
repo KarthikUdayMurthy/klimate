@@ -5,6 +5,7 @@ import { MoonPhase } from '../../Util/Components';
 
 export interface TomorrowWeatherWidgetProps {
   data: IDailyWeather;
+  previousMenuIndex: number;
 }
 
 const getDataPoint = (
@@ -30,10 +31,16 @@ const getDataPoint = (
 };
 
 const TomorrowWeatherWidget: React.FC<TomorrowWeatherWidgetProps> = ({
-  data
+  data,
+  previousMenuIndex
 }) => {
   return (
-    <div className="TomorrowWeatherWidget card w3-animate-opacity">
+    <div
+      className={
+        'TomorrowWeatherWidget card ' +
+        (previousMenuIndex < 1 ? 'w3-animate-right' : 'w3-animate-left')
+      }
+    >
       <div className="fC w100 fAiSb fJcC">
         <div className="fR w100 fAiC fJcC mb12 wsN fontM">
           <i className="fas fa-calendar" />

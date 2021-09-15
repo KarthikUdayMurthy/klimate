@@ -6,12 +6,12 @@ interface MoonPhaseProps {
 
 const MoonPhase: React.FC<MoonPhaseProps> = ({ value }) => {
   let phaseVal: number = value * 2;
-  phaseVal = phaseVal > 1 ? phaseVal - 1 : phaseVal;
+  phaseVal = phaseVal > 1 ? 2 - phaseVal : phaseVal;
   const size = 25;
   let fctr = 0;
   if (phaseVal < 0.75) {
     fctr = size * 0.5 * phaseVal;
-  } else if (phaseVal >= 0.75 && phaseVal < 0.9) {
+  } else if (phaseVal >= 0.75 && phaseVal < 0.98) {
     fctr = size * 0.66 * phaseVal;
   } else {
     fctr = size * 0.75 * phaseVal;
