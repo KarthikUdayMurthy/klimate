@@ -39,9 +39,9 @@ const DayNightMeter: React.FC<DayNightMeterProps> = ({
     if (i === parseInt(currentTime.toString())) {
       obj.className += ' current';
     }
-    let j = i + 1;
-    obj.hourVal = j > 12 ? j - 12 : j;
-    obj.ampm = j >= 12 && j != 24 ? 'pm' : 'am';
+    let j = i;
+    obj.hourVal = j > 12 ? j - 12 : j || 12;
+    obj.ampm = j >= 12 ? 'pm' : 'am';
     meterDivs.push(obj);
   }
 
@@ -54,15 +54,13 @@ const DayNightMeter: React.FC<DayNightMeterProps> = ({
             i === 0 ? 'right' : i === meterDivs.length - 1 ? 'left' : 'top'
           }
           text={m.hourVal + ' ' + m.ampm}
-          onClick={true}
         >
           <div
             key={i}
             className={
               m.className + ' DayNightMeterItem font2 fontS fC fAiSb fJcC'
             }
-          >
-          </div>
+          ></div>
         </Tooltip>
       ))}
     </div>
