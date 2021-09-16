@@ -5,6 +5,7 @@ import { MoonPhase } from '../../Util/Components';
 
 export interface DailyWeatherWidgetProps {
   data: IDailyWeather[];
+  isSwiped: boolean;
 }
 
 const getDataPoint = (
@@ -30,7 +31,8 @@ const getDataPoint = (
 };
 
 const DailyWeatherWidget: React.FC<DailyWeatherWidgetProps> = ({
-  data: dailyData
+  data: dailyData,
+  isSwiped,
 }) => {
   const [showDetail, setShowDetail] = React.useState<number>(-1);
 
@@ -39,11 +41,18 @@ const DailyWeatherWidget: React.FC<DailyWeatherWidgetProps> = ({
   };
 
   return (
-    <div className="DailyWeatherWidget card w3-animate-right">
+    <div
+      className={
+        'DailyWeatherWidget card ' +
+        (isSwiped ? 'w3-animate-right' : 'w3-animate-opacity')
+      }
+    >
       {dailyData.map((data, ind) => (
         <div
           key={data.dt}
-          className="DailyWeatherWidgetItem"
+          className={
+            'DailyWeatherWidgetItem ' + (isSwiped ? '' : 'w3-animate-top')
+          }
           onClick={() => toggleDetail(ind)}
         >
           <div className="fR w100 fAiC fJcSb">
@@ -66,7 +75,7 @@ const DailyWeatherWidget: React.FC<DailyWeatherWidgetProps> = ({
                   backgroundImage:
                     'url(https://openweathermap.org/img/wn/' +
                     data.weather[0].icon +
-                    '@2x.png)'
+                    '@2x.png)',
                 }}
                 title={data.weather[0].main}
                 className="imgDiv"

@@ -6,6 +6,7 @@ import { MoonPhase } from '../../Util/Components';
 export interface TomorrowWeatherWidgetProps {
   data: IDailyWeather;
   previousMenuIndex: number;
+  isSwiped: boolean;
 }
 
 const getDataPoint = (
@@ -32,13 +33,18 @@ const getDataPoint = (
 
 const TomorrowWeatherWidget: React.FC<TomorrowWeatherWidgetProps> = ({
   data,
-  previousMenuIndex
+  previousMenuIndex,
+  isSwiped,
 }) => {
   return (
     <div
       className={
         'TomorrowWeatherWidget card ' +
-        (previousMenuIndex < 1 ? 'w3-animate-right' : 'w3-animate-left')
+        (isSwiped
+          ? previousMenuIndex < 1
+            ? 'w3-animate-right'
+            : 'w3-animate-left'
+          : 'w3-animate-opacity')
       }
     >
       <div className="fC w100 fAiSb fJcC">
@@ -57,7 +63,7 @@ const TomorrowWeatherWidget: React.FC<TomorrowWeatherWidgetProps> = ({
                 backgroundImage:
                   'url(https://openweathermap.org/img/wn/' +
                   data.weather[0].icon +
-                  '@2x.png)'
+                  '@2x.png)',
               }}
               title={data.weather[0].main}
               className="imgDiv"

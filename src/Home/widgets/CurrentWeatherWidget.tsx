@@ -7,6 +7,7 @@ import { HourlyWeatherWidget } from './HourlyWeatherWidget';
 export interface CurrentWeatherWidgetProps {
   data: ICurrentWeather;
   hourlyWeatherdata: IHourlyWeather[];
+  isSwiped: boolean;
 }
 
 const getDataPoint = (
@@ -33,10 +34,16 @@ const getDataPoint = (
 
 const CurrentWeatherWidget: React.FC<CurrentWeatherWidgetProps> = ({
   data,
-  hourlyWeatherdata
+  hourlyWeatherdata,
+  isSwiped,
 }) => {
   return (
-    <div className="CurrentWeatherWidget card w3-animate-left">
+    <div
+      className={
+        'CurrentWeatherWidget card ' +
+        (isSwiped ? 'w3-animate-left' : 'w3-animate-opacity')
+      }
+    >
       <div className="fC w100 fAiSb fJcC">
         <div className="fR w100 fAiC fJcC mb12 wsN fontM">
           <i className="fas fa-calendar" />
@@ -53,7 +60,7 @@ const CurrentWeatherWidget: React.FC<CurrentWeatherWidgetProps> = ({
                 backgroundImage:
                   'url(https://openweathermap.org/img/wn/' +
                   data.weather[0].icon +
-                  '@2x.png)'
+                  '@2x.png)',
               }}
               title={data.weather[0].main}
               className="imgDiv"
@@ -127,7 +134,7 @@ const CurrentWeatherWidget: React.FC<CurrentWeatherWidgetProps> = ({
           />
         </div>
         <div className="fR w100 fAiC fJcSb mt12">
-          <HourlyWeatherWidget data={hourlyWeatherdata} />
+          <HourlyWeatherWidget data={hourlyWeatherdata} isSwiped={isSwiped} />
         </div>
       </div>
     </div>

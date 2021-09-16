@@ -57,7 +57,7 @@ body {
   -moz-flex-direction: column;
   flex-direction: column;
   width: 100% !important;
-  height: 100vh !important;
+  height: 100% !important;
   overflow: hidden;
   align-items: stretch;
   justify-content: flex-start;
@@ -73,6 +73,7 @@ body {
   -webkit-flex: 15 15 auto;
   -moz-flex: 15 15 auto;
   overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
   display: -webkit-flex;
   display: -moz-flex;

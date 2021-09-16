@@ -8,7 +8,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 12px;
+  margin: 0;
   background: rgba(0, 12, 31, 0.66);
 }
 
@@ -17,6 +17,12 @@
   margin-left: 8px;
   font-size: 14px;
   padding: 4px 12px;
+}
+
+.CurrentWeatherWidget,
+.TomorrowWeatherWidget,
+.DailyWeatherWidget {
+  flex: 15 15 auto;
 }
 
 .CurrentWeatherWidget,
@@ -111,7 +117,7 @@
   flex-direction: column;
   align-items: stretch;
   justify-content: space-between;
-  max-height: 60vh;
+  /* max-height: 60vh; */
 }
 
 .DailyWeatherWidgetItem {

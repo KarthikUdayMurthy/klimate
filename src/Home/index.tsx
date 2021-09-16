@@ -7,7 +7,7 @@ import {
   DataHistoryWidget,
   CurrentWeatherWidget,
   TomorrowWeatherWidget,
-  DailyWeatherWidget
+  DailyWeatherWidget,
 } from './widgets';
 import { IOneCall, IUserData } from '../Models';
 
@@ -24,6 +24,7 @@ interface HomeState {
   menuItems: ITabMenuItem[];
   selectedMenuIndex: number;
   previousMenuIndex: number;
+  isSwiped: boolean;
 }
 
 export default class Home extends React.Component<HomeProps, HomeState> {
@@ -36,7 +37,8 @@ export default class Home extends React.Component<HomeProps, HomeState> {
       OneCallEndPoint: 'OneCall',
       menuItems: [],
       selectedMenuIndex: 0,
-      previousMenuIndex: 0
+      previousMenuIndex: 0,
+      isSwiped: false,
     };
     this.fetchOneCallData = this.fetchOneCallData.bind(this);
     this.refreshData = this.refreshData.bind(this);
@@ -46,10 +48,10 @@ export default class Home extends React.Component<HomeProps, HomeState> {
   componentDidMount() {
     addSwipeListeners(
       () => {
-        this.menuItemChange(this.state.selectedMenuIndex - 1);
+        this.menuItemChange(this.state.selectedMenuIndex - 1, true);
       },
       () => {
-        this.menuItemChange(this.state.selectedMenuIndex + 1);
+        this.menuItemChange(this.state.selectedMenuIndex + 1, true);
       },
       '.HourlyWeatherWidget'
     );
@@ -60,21 +62,21 @@ export default class Home extends React.Component<HomeProps, HomeState> {
           text: 'Today',
           onClick: () => this.menuItemChange(0),
           isSelected: this.state.selectedMenuIndex === 0,
-          icon: 'fas fa-calendar'
+          icon: 'fas fa-calendar',
         },
         {
           text: 'Tomorrow',
           onClick: () => this.menuItemChange(1),
           isSelected: this.state.selectedMenuIndex === 1,
-          icon: 'fas fa-calendar-day'
+          icon: 'fas fa-calendar-day',
         },
         {
           text: '8 Days',
           onClick: () => this.menuItemChange(2),
           isSelected: this.state.selectedMenuIndex === 2,
-          icon: 'fas fa-calendar-alt'
-        }
-      ]
+          icon: 'fas fa-calendar-alt',
+        },
+      ],
     });
   }
 
@@ -90,7 +92,7 @@ export default class Home extends React.Component<HomeProps, HomeState> {
     let { OneCallEndPoint } = this.state;
     let params: FetchDataParams = {
       endPoint: OneCallEndPoint,
-      cacheKey: OneCallEndPoint + '00'
+      cacheKey: OneCallEndPoint + '00',
     };
     if (tourMode) {
       params.isMock = true;
@@ -102,23 +104,23 @@ export default class Home extends React.Component<HomeProps, HomeState> {
         lon,
         units: 'metric',
         exclude: 'minutely',
-        appid
+        appid,
       };
     }
     apiHelper
       .fetchData<IOneCall>(params)
-      .then(res => {
+      .then((res) => {
         this.setState({
           apiData: dataModifier(res),
           loading: false,
-          apiError: ''
+          apiError: '',
         });
       })
-      .catch(e => {
+      .catch((e) => {
         this.setState({
           apiData: null,
           loading: false,
-          apiError: e.message
+          apiError: e.message,
         });
       });
   }
@@ -128,7 +130,7 @@ export default class Home extends React.Component<HomeProps, HomeState> {
     this.fetchOneCallData();
   }
 
-  menuItemChange(menuItemIndex: number) {
+  menuItemChange(menuItemIndex: number, isSwiped: boolean = false) {
     if (menuItemIndex > 2) {
       menuItemIndex = 2;
     } else if (menuItemIndex < 0) {
@@ -140,7 +142,8 @@ export default class Home extends React.Component<HomeProps, HomeState> {
         return menuItem;
       }),
       previousMenuIndex: this.state.selectedMenuIndex,
-      selectedMenuIndex: menuItemIndex
+      selectedMenuIndex: menuItemIndex,
+      isSwiped: isSwiped,
     });
   }
 
@@ -175,18 +178,27 @@ export default class Home extends React.Component<HomeProps, HomeState> {
             <CurrentWeatherWidget
               data={apiData.current}
               hourlyWeatherdata={apiData.hourly}
+              isSwiped={this.state.isSwiped}
             />
           )}
           {this.state.selectedMenuIndex === 1 && (
             <TomorrowWeatherWidget
               data={apiData.daily[1]}
               previousMenuIndex={this.state.previousMenuIndex}
+              isSwiped={this.state.isSwiped}
             />
           )}
           {this.state.selectedMenuIndex === 2 && (
-            <DailyWeatherWidget data={apiData.daily} />
+            <DailyWeatherWidget
+              data={apiData.daily}
+              isSwiped={this.state.isSwiped}
+            />
           )}
-          <button className="iBtnSecondary w3-block" onClick={onLogout}>
+          <button
+            className="iBtnSecondary w3-block"
+            onClick={onLogout}
+            style={{ marginBottom: 0 }}
+          >
             {tourMode ? 'End Tour' : 'Logout'}
           </button>
         </div>

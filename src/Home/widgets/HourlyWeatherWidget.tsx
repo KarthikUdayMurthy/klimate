@@ -4,6 +4,7 @@ import { getDateFromTimestamp } from '../../Util/util';
 
 export interface HourlyWeatherWidgetProps {
   data: IHourlyWeather[];
+  isSwiped: boolean;
 }
 
 const getDataPoint = (val: any, iconClass?: string): React.ReactNode => {
@@ -24,11 +25,16 @@ const getDataPoint = (val: any, iconClass?: string): React.ReactNode => {
 };
 
 const HourlyWeatherWidget: React.FC<HourlyWeatherWidgetProps> = ({
-  data: hourlyData
+  data: hourlyData,
+  isSwiped,
 }) => {
   return (
-    <div className="HourlyWeatherWidget mt12">
-      {hourlyData.map(data => (
+    <div
+      className={
+        'HourlyWeatherWidget mt12 ' + (isSwiped ? '' : 'w3-animate-left')
+      }
+    >
+      {hourlyData.map((data) => (
         <div
           key={data.dt}
           className={'HourlyWeatherWidgetItem ' + data._dayLight}
@@ -46,7 +52,7 @@ const HourlyWeatherWidget: React.FC<HourlyWeatherWidgetProps> = ({
                 backgroundImage:
                   'url(https://openweathermap.org/img/wn/' +
                   data.weather[0].icon +
-                  '@2x.png)'
+                  '@2x.png)',
               }}
               title={data.weather[0].main}
               className="imgDiv"
