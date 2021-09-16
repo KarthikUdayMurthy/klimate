@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { getCurrentTimeInHrs } from '../../Util/util';
+import { Tooltip } from '../../Util/Components';
 
 export interface DayNightMeterProps {
   _sunrise_hrs: number;
@@ -8,7 +9,7 @@ export interface DayNightMeterProps {
 
 const DayNightMeter: React.FC<DayNightMeterProps> = ({
   _sunrise_hrs,
-  _sunset_hrs
+  _sunset_hrs,
 }) => {
   let [currentTime, setCurrentTime] = React.useState(getCurrentTimeInHrs());
 
@@ -47,13 +48,21 @@ const DayNightMeter: React.FC<DayNightMeterProps> = ({
   return (
     <div className="fR w100 fAiC fJcSb DayNightMeter">
       {meterDivs.map((m, i) => (
-        <div
-          key={i}
-          className={m.className + ' font2 fontS fC fAiSb fJcC'}
-          title={m.hourVal + ' ' + m.ampm}
+        <Tooltip
+          direction={
+            i === 0 ? 'right' : i === meterDivs.length - 1 ? 'left' : 'top'
+          }
+          text={m.hourVal + ' ' + m.ampm}
         >
-          {/* {m.hourVal} */}
-        </div>
+          <div
+            key={i}
+            className={
+              m.className + ' DayNightMeterItem font2 fontS fC fAiSb fJcC'
+            }
+          >
+            {/* {m.hourVal} */}
+          </div>
+        </Tooltip>
       ))}
     </div>
   );

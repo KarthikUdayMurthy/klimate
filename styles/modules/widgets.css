@@ -137,30 +137,35 @@
   cursor: pointer;
 }
 
-.DayNightMeter div {
+.DayNightMeter .tooltipHost {
+  flex: 1 1 auto;
+  margin: 0px 2px !important;
+}
+
+.DayNightMeter .DayNightMeterItem {
   height: 36px;
   min-width: 4px;
   background: #ccc;
   flex: 1 1 auto;
-  margin: 0px 2px;
+  margin: 0;
   border-radius: 2px;
   text-align: center;
   letter-spacing: 0px !important;
 }
 
-.DayNightMeter div.day {
+.DayNightMeter .DayNightMeterItem.day {
   background-color: rgba(19, 202, 226, 0.7);
 }
 
-.DayNightMeter div.night {
+.DayNightMeter .DayNightMeterItem.night {
   background-color: rgba(15, 8, 66, 0.7);
 }
 
-.DayNightMeter div.twilight {
+.DayNightMeter .DayNightMeterItem.twilight {
   background-color: rgba(19, 150, 205, 0.7);
 }
 
-.DayNightMeter div.current {
+.DayNightMeter .DayNightMeterItem.current {
   transform: scale(1.2);
   margin: 0px 4px;
 }

@@ -1,0 +1,93 @@
+.tooltipHost {
+  position: relative !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.tooltipWrap {
+  display: none;
+  position: absolute !important;
+  z-index: 999;
+  padding: 4px;
+  border-radius: 4px;
+  background: #212121;
+  /* box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
+    0 7px 10px -5px rgba(0, 0, 0, 0.4) !important; */
+  min-width: 50px !important;
+  width: fit-content;
+  box-sizing: border-box !important;
+  text-align: center;
+}
+
+.tooltipWrap.top {
+  top: -10px;
+  left: 50%;
+  transform: translate(-50%, -100%);
+}
+
+.tooltipWrap.top::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #212121;
+}
+
+.tooltipWrap.bottom {
+  bottom: -10px;
+  left: 50%;
+  transform: translate(-50%, 100%);
+}
+
+.tooltipWrap.bottom::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  border-top: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #212121;
+}
+
+.tooltipWrap.left {
+  top: 50%;
+  left: -10px;
+  transform: translate(-100%, -50%);
+}
+
+.tooltipWrap.left::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(100%, -50%);
+  border-bottom: 10px solid transparent;
+  border-top: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-left: 10px solid #212121;
+}
+
+.tooltipWrap.right {
+  top: 50%;
+  right: -10px;
+  transform: translate(100%, -50%);
+}
+
+.tooltipWrap.right::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-100%, -50%);
+  border-bottom: 10px solid transparent;
+  border-top: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-right: 10px solid #212121;
+}
