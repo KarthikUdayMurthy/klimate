@@ -49,10 +49,12 @@ const DayNightMeter: React.FC<DayNightMeterProps> = ({
     <div className="fR w100 fAiC fJcSb DayNightMeter">
       {meterDivs.map((m, i) => (
         <Tooltip
+          key={i}
           direction={
             i === 0 ? 'right' : i === meterDivs.length - 1 ? 'left' : 'top'
           }
           text={m.hourVal + ' ' + m.ampm}
+          onClick={true}
         >
           <div
             key={i}
@@ -60,7 +62,6 @@ const DayNightMeter: React.FC<DayNightMeterProps> = ({
               m.className + ' DayNightMeterItem font2 fontS fC fAiSb fJcC'
             }
           >
-            {/* {m.hourVal} */}
           </div>
         </Tooltip>
       ))}
