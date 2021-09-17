@@ -53,7 +53,9 @@ const Tooltip: React.FC<TooltipProps> = ({
       onMouseLeave={() => onHover && removeTooltipOnMouseleave()}
     >
       <div
-        className={'tooltipWrap fontS font2 w3-animate-opacity ' + direction}
+        className={
+          'tooltipWrap fontS font2 bold w3-animate-opacity ' + direction
+        }
         ref={currentTooltipRef}
       >
         {text}

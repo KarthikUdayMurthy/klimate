@@ -167,5 +167,5 @@
 
 .DayNightMeter .DayNightMeterItem.current {
   transform: scale(1.2);
-  margin: 0px 4px;
+  margin: 0px 2px;
 }

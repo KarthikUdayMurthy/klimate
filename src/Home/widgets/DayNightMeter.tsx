@@ -24,7 +24,7 @@ const DayNightMeter: React.FC<DayNightMeterProps> = ({
 
   let meterDivs = [];
   for (let i = 0; i < 24; i++) {
-    let obj = { className: '', hourVal: 0, ampm: '' };
+    let obj = { className: '', hourVal: 0, ampm: '', tooltip: '' };
     if (
       i === parseInt(_sunrise_hrs.toString()) ||
       i === parseInt(_sunset_hrs.toString())
@@ -42,6 +42,7 @@ const DayNightMeter: React.FC<DayNightMeterProps> = ({
     let j = i;
     obj.hourVal = j > 12 ? j - 12 : j || 12;
     obj.ampm = j >= 12 ? 'pm' : 'am';
+    obj.tooltip = `${obj.hourVal} ${obj.ampm} (${obj.className.split(' ')[0]})`;
     meterDivs.push(obj);
   }
 
@@ -53,7 +54,7 @@ const DayNightMeter: React.FC<DayNightMeterProps> = ({
           direction={
             i === 0 ? 'right' : i === meterDivs.length - 1 ? 'left' : 'top'
           }
-          text={m.hourVal + ' ' + m.ampm}
+          text={m.tooltip}
         >
           <div
             key={i}
