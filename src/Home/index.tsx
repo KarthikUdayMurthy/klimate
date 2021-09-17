@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Loading, TabMenu, ITabMenuItem } from '../Util/Components';
 import apiHelper, { FetchDataParams } from '../Util/apiHelper';
-import { addSwipeListeners, removeSwipeListeners } from '../Util/swipeDetect';
 import dataModifier from '../Util/dataModifier';
 import {
   DataHistoryWidget,
@@ -28,6 +27,10 @@ interface HomeState {
 }
 
 export default class Home extends React.Component<HomeProps, HomeState> {
+  _xDown = null;
+  _yDown = null;
+  _excludeSelectors = '.HourlyWeatherWidget';
+
   constructor(props) {
     super(props);
     this.state = {
@@ -43,18 +46,13 @@ export default class Home extends React.Component<HomeProps, HomeState> {
     this.fetchOneCallData = this.fetchOneCallData.bind(this);
     this.refreshData = this.refreshData.bind(this);
     this.menuItemChange = this.menuItemChange.bind(this);
+    this.addSwipeListeners = this.addSwipeListeners.bind(this);
+    this.handleTouchStart = this.handleTouchStart.bind(this);
+    this.handleTouchMove = this.handleTouchMove.bind(this);
   }
 
   componentDidMount() {
-    addSwipeListeners(
-      () => {
-        this.menuItemChange(this.state.selectedMenuIndex - 1, true);
-      },
-      () => {
-        this.menuItemChange(this.state.selectedMenuIndex + 1, true);
-      },
-      '.HourlyWeatherWidget'
-    );
+    this.addSwipeListeners();
     this.fetchOneCallData();
     this.setState({
       menuItems: [
@@ -81,7 +79,9 @@ export default class Home extends React.Component<HomeProps, HomeState> {
   }
 
   componentWillUnmount() {
-    removeSwipeListeners();
+    const rootDiv = document.getElementById('root');
+    rootDiv.removeEventListener('touchstart', this.handleTouchStart, false);
+    rootDiv.removeEventListener('touchmove', this.handleTouchMove, false);
   }
 
   fetchOneCallData() {
@@ -128,6 +128,58 @@ export default class Home extends React.Component<HomeProps, HomeState> {
   refreshData() {
     apiHelper.clearCache(this.state.OneCallEndPoint);
     this.fetchOneCallData();
+  }
+
+  addSwipeListeners() {
+    const rootDiv = document.getElementById('root');
+    rootDiv.addEventListener('touchstart', this.handleTouchStart, false);
+    rootDiv.addEventListener('touchmove', this.handleTouchMove, false);
+  }
+
+  handleTouchStart(evt) {
+    if (evt.target.closest(this._excludeSelectors)) {
+      return;
+    }
+    const getTouches = (evt: TouchEvent) => {
+      return evt.touches;
+    };
+    const firstTouch = getTouches(evt)[0];
+    this._xDown = firstTouch.clientX;
+    this._yDown = firstTouch.clientY;
+  }
+
+  handleTouchMove(evt) {
+    if (!this._xDown || !this._yDown) {
+      return;
+    }
+
+    if (evt.target.closest(this._excludeSelectors)) {
+      return;
+    }
+
+    let xUp = evt.touches[0].clientX;
+    let yUp = evt.touches[0].clientY;
+
+    let xDiff = this._xDown - xUp;
+    let yDiff = this._yDown - yUp;
+
+    if (Math.abs(xDiff) > Math.abs(yDiff)) {
+      if (xDiff > 0) {
+        /* right swipe */
+        this.menuItemChange(this.state.selectedMenuIndex + 1, true);
+      } else {
+        /* left swipe */
+        this.menuItemChange(this.state.selectedMenuIndex - 1, true);
+      }
+    } else {
+      if (yDiff > 0) {
+        /* down swipe */
+      } else {
+        /* up swipe */
+      }
+    }
+    this._xDown = null;
+    this._yDown = null;
   }
 
   menuItemChange(menuItemIndex: number, isSwiped: boolean = false) {
